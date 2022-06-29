@@ -1,0 +1,31 @@
+---
+# tasks file for backup
+
+- name: get time from localhost
+  ansible.builtin.command:
+    cmd: date +%Y-%m-%d
+  delegate_to: localhost
+  run_once: true
+  register: time_output
+  changed_when: false
+
+- name: clone git repo to localhost
+  ansible.builtin.git:
+    repo: "{{ git_repo }}"
+    dest: "{{ git_dest }}"
+    version: "{{ git_version }}"
+  delegate_to: localhost
+  run_once: true
+  notify: remove git repo from localhost
+
+- name: create backup directory
+  ansible.builtin.file:
+    path: "{{ git_dest }}{{ time_output.stdout }}"
+    state: directory
+    mode: '0775'
+  delegate_to: localhost
+  run_once: true
+
+- name: include tasks
+  ansible.builtin.include_tasks:
+    file: "{{ ansible_network_os }}.yml"

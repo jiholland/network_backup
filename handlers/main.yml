@@ -1,0 +1,23 @@
+---
+# handler files for network_backup
+
+- name: push to git
+  # noqa command-instead-of-module
+  # noqa no-loop-var-prefix
+  ansible.builtin.command:
+    cmd: "{{ item }}"
+  args:
+    chdir: "{{ git_dest }}{{ time_output.stdout }}"
+  loop:
+    - "git add ."
+    - "git commit -m 'Backup created at {{ time_output.stdout }}.'"
+    - "git push origin {{ git_version }}"
+  delegate_to: localhost
+  run_once: true
+
+- name: remove git repo from localhost
+  ansible.builtin.file:
+    path: "{{ git_dest }}"
+    state: absent
+  delegate_to: localhost
+  run_once: true

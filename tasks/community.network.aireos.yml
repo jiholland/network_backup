@@ -1,0 +1,10 @@
+---
+# tasks file for network_backup
+
+- name: backup running-config to local directory
+  community.network.aireos_config:
+    backup: true
+    backup_options:
+      filename: "{{ inventory_hostname }}_{{ time_output.stdout }}.txt"
+      dir_path: "{{ git_dest }}{{ time_output.stdout }}"
+  notify: push to git

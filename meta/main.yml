@@ -1,0 +1,26 @@
+---
+galaxy_info:
+  role_name: network_backup
+  author: Jørn Ivar Holland
+  description: Backup the running-configuration from network-devices to git-repository.
+  license: BSD-3-Clause
+  min_ansible_version: '2.9'
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: IOS
+      versions:
+        - all
+    - name: NXOS
+      versions:
+        - all
+  galaxy_tags:
+    - backup
+    - cisco
+    - catalyst
+    - nexus
+    - aireos
+
+
+dependencies: []
