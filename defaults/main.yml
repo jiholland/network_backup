@@ -1,0 +1,4 @@
+---
+# defaults file for network_backup
+
+git_repo: git@github.com:myusername/reponame.git

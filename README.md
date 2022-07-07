@@ -13,8 +13,11 @@ Requirements
 Role Variables
 --------------
 
-- git\_dest
+defaults:
 - git\_repo
+
+vars:
+- git\_dest
 - git\_version
 
 Dependencies

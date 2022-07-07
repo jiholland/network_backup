@@ -1,6 +1,5 @@
 ---
 # vars file for network_backup
 
-git_repo: git@github.com:jiholland/ansible_backup.git
 git_dest: /tmp/ansible_backup/
 git_version: main
