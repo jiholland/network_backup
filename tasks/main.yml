@@ -26,6 +26,6 @@
   delegate_to: localhost
   run_once: true
 
-- name: include spesific tasks for taking backup
+- name: include tasks
   ansible.builtin.include_tasks:
     file: "{{ ansible_network_os }}.yml"
